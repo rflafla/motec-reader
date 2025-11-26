@@ -1,4 +1,4 @@
-import { BinaryReader, decodeString } from './utils';
+import { BinaryReader, decodeString } from './utils.js';
 
 export type DataType = 'int16' | 'int32' | 'float16' | 'float32' | 'gps' | 'timestamp' | null;
 

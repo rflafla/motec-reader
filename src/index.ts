@@ -5,6 +5,6 @@
  * Code created through reverse engineering the data format.
  */
 
-export { LdData } from './ldData';
-export { LdHead, LdEvent, LdVenue, LdVehicle } from './ldHead';
-export { LdChan, DataType } from './ldChan';
+export { LdData } from './ldData.js';
+export { LdHead, LdEvent, LdVenue, LdVehicle } from './ldHead.js';
+export { LdChan, DataType } from './ldChan.js';

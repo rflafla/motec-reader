@@ -1,4 +1,4 @@
-import { BinaryReader, decodeString } from './utils';
+import { BinaryReader, decodeString } from './utils.js';
 
 /**
  * Vehicle information

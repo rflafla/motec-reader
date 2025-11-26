@@ -1,6 +1,6 @@
-import { BinaryReader, readFileBuffer } from './utils';
-import { LdHead } from './ldHead';
-import { LdChan, readChannels } from './ldChan';
+import { BinaryReader, readFileBuffer } from './utils.js';
+import { LdHead } from './ldHead.js';
+import { LdChan, readChannels } from './ldChan.js';
 
 /**
  * Container for parsed data of an ld file.

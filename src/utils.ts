@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import { readFileSync } from 'fs';
 
 /**
  * Decode a null-terminated ASCII string from a buffer
@@ -126,5 +126,5 @@ export class BinaryReader {
  * Read entire file into a buffer
  */
 export function readFileBuffer(filePath: string): Buffer {
-  return fs.readFileSync(filePath);
+  return readFileSync(filePath);
 }
