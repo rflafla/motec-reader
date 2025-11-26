@@ -1,6 +1,6 @@
 import { BinaryReader, decodeString } from './utils';
 
-export type DataType = 'int16' | 'int32' | 'float16' | 'float32' | null;
+export type DataType = 'int16' | 'int32' | 'float16' | 'float32' | 'gps' | 'timestamp' | null;
 
 /**
  * Channel (meta) data
@@ -95,15 +95,27 @@ export class LdChan {
     reader.skip(40); // padding
 
     // Determine data type
+    // dtypeRaw is the number of bytes
     let dtype: DataType = null;
     if (dtypeA === 0x07) {
       // Float types
-      if (dtypeRaw === 2) dtype = 'float16';
-      else if (dtypeRaw === 4) dtype = 'float32';
+      if (dtypeRaw === 2) {
+        dtype = 'float16';
+      }
+      else if (dtypeRaw === 4) {
+        dtype = 'float32';
+      }
     } else if ([0, 0x03, 0x05].includes(dtypeA)) {
       // Integer types
-      if (dtypeRaw === 2) dtype = 'int16';
-      else if (dtypeRaw === 4) dtype = 'int32';
+      if (dtypeRaw === 2) {
+        dtype = 'int16';
+      } else if (dtypeRaw === 4) {
+        dtype = 'int32';
+      }
+    } else if (dtypeA === 0x08) {
+      dtype = 'gps';
+    } else if (dtypeA === 0x06) {
+      dtype = 'timestamp';
     }
 
     return new LdChan(
@@ -128,7 +140,7 @@ export class LdChan {
   /**
    * Read the data words of the channel (lazy loading)
    */
-  get data(): number[] {
+  get data(): number[] | bigint[] {
     if (this.dtype === null) {
       throw new Error(`Channel ${this.name} has unknown data type`);
     }

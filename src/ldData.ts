@@ -87,7 +87,7 @@ export class LdData {
       shortName: string;
       unit: string;
       freq: number;
-      data: number[];
+      data: number[] | bigint[];
     }[];
   } {
     return {
@@ -113,8 +113,8 @@ export class LdData {
   /**
    * Get channel data as a map of channel names to data arrays
    */
-  toDataMap(): Record<string, number[]> {
-    const result: Record<string, number[]> = {};
+  toDataMap(): Record<string, number[] | bigint[]> {
+    const result: Record<string, number[] | bigint[]> = {};
     for (const channel of this.channels) {
       result[channel.name] = channel.data;
     }

@@ -66,7 +66,7 @@ export class BinaryReader {
   /**
    * Read an array of numeric data with a specific data type
    */
-  readNumericArray(dataPtr: number, count: number, dtype: 'int16' | 'int32' | 'float32' | 'float16'): number[] {
+  readNumericArray(dataPtr: number, count: number, dtype: 'int16' | 'int32' | 'float32' | 'float16' | 'gps' | 'timestamp'): number[] {
     this.seek(dataPtr);
     const result: number[] = [];
 
@@ -76,7 +76,13 @@ export class BinaryReader {
           result.push(this.readInt16LE());
           break;
         case 'int32':
+        case 'timestamp':
           result.push(this.readInt32LE());
+          break;
+        case 'gps':
+          result.push(this.buffer.readDoubleLE(this.position));
+          // result.push(Number(this.buffer.readBigInt64LE(this.position)));
+          this.position += 8;
           break;
         case 'float32':
           result.push(this.buffer.readFloatLE(this.position));
