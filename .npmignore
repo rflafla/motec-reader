@@ -1,0 +1,33 @@
+# Source files (only publish dist/)
+src/
+tsconfig.json
+
+# Development files
+*.py
+example.js
+.vscode/
+.idea/
+
+# Git
+.git/
+.gitignore
+
+# Tests
+*.test.ts
+*.test.js
+coverage/
+
+# Documentation source
+docs/
+
+# IDE
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
