@@ -21,6 +21,13 @@ export class LdData {
    */
   static fromFile(filePath: string): LdData {
     const buffer = readFileBuffer(filePath);
+    return this.fromBuffer(buffer);
+  }
+
+  /**
+   * Parse data from an ld file
+   */
+  static fromBuffer(buffer: Buffer): LdData {
     const reader = new BinaryReader(buffer);
 
     // Read header
